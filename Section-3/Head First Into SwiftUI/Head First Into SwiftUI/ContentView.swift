@@ -10,14 +10,19 @@ import SwiftUI
 struct ContentView: View {
     @State private var score: Int = 0
     @State private var correctAnswer: Int = 0
+    @State private var gameTitle: String = "?"
+    @State private var gameSubtitle: String = ""
     
     var body: some View {
         VStack {
-            Group {
-                Text("?")
+            VStack {
+                Text(gameTitle)
                     .font(.system(size: 40, weight: .semibold))
+                
+                Text(gameSubtitle)
+                    .font(.system(size: 20, weight: .regular))
             }
-            .frame(height: 350)
+            .padding(.vertical, 100)
             
             Text("Score: \(score)")
                 .font(.system(size: 15, weight: .semibold))
@@ -66,10 +71,19 @@ struct ContentView: View {
     private func checkAnswer(_ answer: Int) {
         if correctAnswer == answer {
             score += 1
+            gameTitle = "Success!"
         } else {
+            gameTitle = "Failed!"
             if score > 0 {
                 score -= 1
             }
+        }
+        
+        gameSubtitle = switch answer {
+            case 0: "You chose a cat!"
+            case 1: "You chose a dog!"
+            case 2: "You chose a tortoise!"
+            default: "Something went wrong!"
         }
         
         randomizeCorrectAnswer()
