@@ -25,11 +25,7 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
             
             Button {
-                if correctAnswer == 0 {
-                    score += 1
-                } else {
-                    score -= 1
-                }
+                checkAnswer(0)
             } label: {
                 Image(systemName: "cat")
                     .symbolVariant(.fill)
@@ -41,11 +37,7 @@ struct ContentView: View {
             }
             
             Button {
-                if correctAnswer == 1 {
-                    score += 1
-                } else {
-                    score -= 1
-                }
+                checkAnswer(1)
             } label: {
                 Image(systemName: "dog")
                     .symbolVariant(.fill)
@@ -57,11 +49,7 @@ struct ContentView: View {
             }
             
             Button {
-                if correctAnswer == 2 {
-                    score += 1
-                } else {
-                    score -= 1
-                }
+                checkAnswer(2)
             } label: {
                 Image(systemName: "tortoise")
                     .symbolVariant(.fill)
@@ -74,6 +62,16 @@ struct ContentView: View {
         }
         .frame(maxHeight: .infinity, alignment: .top)
         .padding()
+    }
+    
+    private func checkAnswer(_ answer: Int) {
+        if correctAnswer == answer {
+            score += 1
+        } else {
+            if score > 0 {
+                score -= 1
+            }
+        }
     }
 }
 
