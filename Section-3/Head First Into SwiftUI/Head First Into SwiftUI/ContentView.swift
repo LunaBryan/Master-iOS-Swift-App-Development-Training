@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var score: Int = 0
+    
+    var correctAnswer: Int = 0
+    
     var body: some View {
         VStack {
             Group {
@@ -16,12 +20,16 @@ struct ContentView: View {
             }
             .frame(height: 350)
             
-            Text("Score 0")
+            Text("Score: \(score)")
                 .font(.system(size: 15, weight: .semibold))
                 .frame(maxWidth: .infinity, alignment: .trailing)
             
             Button {
-                /// Some
+                if correctAnswer == 0 {
+                    score += 1
+                } else {
+                    score -= 1
+                }
             } label: {
                 Image(systemName: "cat")
                     .symbolVariant(.fill)
@@ -33,7 +41,11 @@ struct ContentView: View {
             }
             
             Button {
-                /// Some
+                if correctAnswer == 1 {
+                    score += 1
+                } else {
+                    score -= 1
+                }
             } label: {
                 Image(systemName: "dog")
                     .symbolVariant(.fill)
@@ -45,7 +57,11 @@ struct ContentView: View {
             }
             
             Button {
-                /// Some
+                if correctAnswer == 2 {
+                    score += 1
+                } else {
+                    score -= 1
+                }
             } label: {
                 Image(systemName: "tortoise")
                     .symbolVariant(.fill)
